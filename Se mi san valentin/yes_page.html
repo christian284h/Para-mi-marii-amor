@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Sabía que dirías que sí!</title>
+    <link rel="stylesheet" href="./yes_style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="header_text">¡Sabía que dirías que sí!</h1>
+        <div class="gif_container">
+            <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMmo3c3l5ODh3ZGN6NHhhaDE2Mjg1ZjkwOXczdDFxbWM3dTBtaW9zaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/9XY4f3FgFTT4QlaYqa/giphy.gif">
+        </div>
+    </div>
+</body>
+</html>
+<audio autoplay loop>
+    <source src="mi-audio2.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+<audio id="musica" loop>
+    <source src="mi-audio2.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    document.addEventListener("click", function() {
+        let musica = document.getElementById("musica");
+        musica.play();
+    }, { once: true }); 
+</script>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música con Corazón</title>
+    <style>
+        /* Estilos generales */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fbeff2;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        /* Botón con forma de corazón */
+        .heart-button {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: none;
+            cursor: pointer;
+            transform: rotate(-45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .heart-button::before,
+        .heart-button::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart-button::before {
+            top: -50px;
+            left: 0;
+        }
+
+        .heart-button::after {
+            left: 50px;
+            top: 0;
+        }
+
+        .heart-button:active {
+            transform: rotate(-45deg) scale(1.1);
+        }
+
+        /* Texto dentro del corazón */
+        .heart-button span {
+            position: absolute;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            transform: rotate(45deg);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Estilos para los corazones animados */
+        .heart-arrow {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: pink;
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 82%, 18% 100%, 0% 38%);
+            animation: fly 2s linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <audio autoplay muted loop id="musica">
+        <source src="mi-audio2.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="heart-button" onclick="activarSonido(); lanzarCorazones();">
+        <span>Pulsa en mí</span>
+    </button>
+
+    <script>
+        function activarSonido() {
+            let musica = document.getElementById('musica');
+            musica.muted = false;
+        }
+
+        function lanzarCorazones() {
+            for (let i = 0; i < 30; i++) { // Se generan más corazones para llenar la pantalla
+                let heart = document.createElement("div");
+                heart.classList.add("heart-arrow");
+                document.body.appendChild(heart);
+
+                // Posición aleatoria en la pantalla
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.bottom = "-30px";
+
+                // Eliminamos el corazón después de la animación
+                setTimeout(() => {
+                    heart.remove();
+                }, 2000);
+            }
+        }
+    </script>
+
+</body>
+</html>
